@@ -1,0 +1,69 @@
+/*
+ * Class: CMSC203 
+ * Instructor:Gary Thai
+ * Description: ESP game
+ * Due: 09/22/23
+ * Platform/compiler: mac 
+ * I pledge that I have completed the programming assignment 
+* independently. I have not copied the code from a student or   * any source. I have not given my code to any student.
+ * Print your Name here: Alvin Beltran
+*/
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class ESPGame {
+    public static void main(String[] args) {
+        final String[] COLORS = {"Red", "Green", "Blue", "Orange", "Yellow"}; // const colors 
+        final int NUM_TRIALS = 11; // const number of tries 
+
+        Scanner scanner = new Scanner(System.in); // Open scanner
+
+        // Get user's info
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Describe yourself: ");
+        String description = scanner.nextLine();
+
+        System.out.print("Enter your MC M#: ");
+        String mcMNumber = scanner.nextLine();
+
+        System.out.print("Enter the Due Date (MM/DD/YY): ");
+        String dueDate = scanner.nextLine();
+
+        int correctGuesses = 0;
+        Random random = new Random();
+        
+        // For loop for game 
+        System.out.println("\nESP Color Game:");
+        for (int i = 1; i <= NUM_TRIALS; i++) {
+            int randomIndex = random.nextInt(COLORS.length);
+            String selectedColor = COLORS[randomIndex];
+
+            System.out.print("Attempt " + i + ": Guess the color: (Red, Green, Blue, Orange, Yellow) ");
+            String userGuess = scanner.nextLine();
+
+            System.out.println("The selected color was: " + selectedColor);
+            
+            // Nested loop in for loop to see if user was right or wrong
+            if (userGuess.equalsIgnoreCase(selectedColor)) {
+                System.out.println("Correct!\n");
+                correctGuesses++;
+            } else {
+                System.out.println("Incorrect.\n");
+            }
+        }
+
+        // Display user's information
+        System.out.println("\nGame Over!!!\n");
+        System.out.println("You guessed " + correctGuesses + " out of " + NUM_TRIALS + " colors correctly\n");
+        System.out.println("Name: " + name);
+        System.out.println("MC M#: " + mcMNumber);
+        System.out.println("Description: " + description);
+        System.out.println("Due Date: " + dueDate);
+
+        
+        scanner.close(); // Close scanner 
+    }
+}
